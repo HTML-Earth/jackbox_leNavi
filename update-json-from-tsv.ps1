@@ -11,7 +11,14 @@ foreach ($row in $tsvContent)
         $matchingId = $jsonContent.content | Where-Object { $_.id -eq $row.id }
         $matchingId.suggestion = $row."na'vi"
 
-        Write-Output "Replaced $($row.id)"
+        Write-Output "Replaced $($row.id) (Na'vi)"
+    }
+    else
+    {
+        $matchingId = $jsonContent.content | Where-Object { $_.id -eq $row.id }
+        $matchingId.suggestion = "[!] $($row.english)"
+
+        Write-Output "Replaced $($row.id) (Prefixed English)"
     }
 }
 
